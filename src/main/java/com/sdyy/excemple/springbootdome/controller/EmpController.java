@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import java.util.Collection;
 
@@ -62,5 +63,13 @@ public class EmpController {
         model.addAttribute("emp",emp);
         model.addAttribute("depts",depts);
         return "emp/add";
+    }
+
+    //员工修改功能,需要提交员工id
+    @PutMapping(value = "/emp")
+    public String updateEmp(Employee employee){
+        System.out.println(employee);
+        employeeDao.save(employee);
+        return "redirect:/emps";
     }
 }
